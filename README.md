@@ -68,6 +68,17 @@ Now, start the **ManageX Signer Server** by running:
 python ManageX_Signer_Server.py
 ```
 
+### **5️⃣ Access the Web Interface**  
+Once the server is running, visit:  
+
+🔗 **[http://127.0.0.1:5020](http://127.0.0.1:5020)**  
+
+🚀 This will open the **MX Server Sign** web interface where you can manage and test digital signing features.  
+
+🎯 **You can now use the APIs to start signing your documents!**  
+
+---
+
 🎯 **Once the server is running, you can use the APIs to start signing your documents!**  
 
 ---
@@ -97,7 +108,7 @@ Edit **`managex_signer.config`** to:
 
 ### **🔹 Upload PFX File**  
 ```http
-POST http://127.0.0.1/upload
+POST http://127.0.0.1:5020/upload
 ```
 **Body (form-data):**  
 - `file` (Type: file) – Select the PFX file  
@@ -105,7 +116,7 @@ POST http://127.0.0.1/upload
 
 ### **🔹 Sign a PDF**  
 ```http
-POST http://127.0.0.1/sign/api/v1.0/postjson
+POST http://127.0.0.1:5020/sign/api/v1.0/postjson
 ```
 **Body (raw JSON):**  
 ```json
