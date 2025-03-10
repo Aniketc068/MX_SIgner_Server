@@ -90,7 +90,7 @@ Edit **`managex_signer.config`** to:
 
 ### **🔹 Upload PFX File**  
 ```http
-POST https://mxserversign.managexindia.in/upload
+POST http://127.0.0.1/upload
 ```
 **Body (form-data):**  
 - `file` (Type: file) – Select the PFX file  
@@ -98,7 +98,7 @@ POST https://mxserversign.managexindia.in/upload
 
 ### **🔹 Sign a PDF**  
 ```http
-POST https://mxserversign.managexindia.in/sign/api/v1.0/postjson
+POST http://127.0.0.1/sign/api/v1.0/postjson
 ```
 **Body (raw JSON):**  
 ```json
