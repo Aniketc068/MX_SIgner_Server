@@ -122,16 +122,16 @@ POST http://127.0.0.1:5020/sign/api/v1.0/postjson
 ```json
 {
   "request": {
-    "command": "managexserversign",
-    "timestamp": "",
-    "transaction_id": "",
+    "command": "managexserversign", // Mandatory
+    "timestamp": "", // Mandatory: Send ISO timestamp
+    "transaction_id": "", // Mandatory: Ensure no duplicates
     "pfx": {
-      "SN": ""
+      "SN": "" // Mandatory: Uploded Certificate Serial no.
     },
     "pdf": {
-      "coordinates": ""
+      "coordinates": "" // Coordinates for signing
     },
-    "pdf_data": ""
+    "pdf_data": "" // Base64 encoded PDF
   }
 }
 ```
