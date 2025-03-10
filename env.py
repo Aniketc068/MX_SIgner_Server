@@ -1,0 +1,10 @@
+EMAILTLS = True
+EMAILHOST = "smtp.gmail.com"
+EMAILPORT = 587
+EMAILHOST_USER = "noreply.managex@gmail.com"
+EMAILHOST_PASSWORD = "qoopnikwoypbat"
+TSA_URL = "http://timestamp.apple.com/ts01"
+MAX_PDF_SIZE_MB = 2
+Default_Date_Format = 'dd-MMM-yyyy HH:mm:ss'
+Default_File_Title = "MX_Signer_Server"
+Default_Coordinates = "94, 90, 180, 120"

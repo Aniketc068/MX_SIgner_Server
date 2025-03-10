@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MXServerSign - Secure Digital Signing Solution for PDFs | ManageX India</title>
+    <meta content="MXServerSign is a secure and efficient cloud-based solution for digitally signing PDFs using .pfx files. Developed by ManageX (India), it ensures fast, reliable, and compliant document signing." name="description">
+    <meta content="MXServerSign - Secure Digital Signing Solution for PDFs | ManageX India" property="og:title">
+    <meta content="MXServerSign is a secure and efficient cloud-based solution for digitally signing PDFs using .pfx files. Developed by ManageX (India), it ensures fast, reliable, and compliant document signing." property="og:description">
+    <meta content="MXServerSign - Secure Digital Signing Solution for PDFs | ManageX India" property="twitter:title">
+    <meta content="MXServerSign is a secure and efficient cloud-based solution for digitally signing PDFs using .pfx files. Developed by ManageX (India), it ensures fast, reliable, and compliant document signing." property="twitter:description">
+    <meta property="og:type" content="website">
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/css/appen-733654.b4fb33ccd.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/webtenn/infinite-marquee@v1/style.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://managexindia.com/static/scroll.css">
+    <link rel="icon" href="https://managexindia.com/static/Lo.png" type="image/png">
+    <!-- PrismJS CSS (for styling the code blocks) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+    <!-- PrismJS JS (for syntax highlighting functionality) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<style>
+/* Custom API Section Styling */
+.custom-api-section {
+    margin: 20px auto;
+    background-color: #2a2a2a; /* Slightly different background for distinction */
+    padding: 15px; /* Reduced padding for smaller size */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    border-left: 4px solid #4caf50; /* Green left border */
+    max-width: 80%; /* Responsive max width */
+    width: 100%; /* Ensure it adjusts for small screens */
+}
+
+/* Heading Styling */
+.custom-api-section h3 {
+    color: #ffb86c; /* Orange-like color for the headings */
+    font-size: 1.6em; /* Slightly smaller font size */
+    font-weight: bold;
+}
+
+/* Paragraph Text Styling */
+.custom-api-section p {
+    color: #e0e0e0; /* Light grey for paragraph text */
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+/* Code Block Styling */
+.custom-api-section pre {
+    background-color: #2d2d2d; /* Slightly darker background for code blocks */
+    padding: 15px; /* Reduced padding for smaller size */
+    border-radius: 8px;
+    color: #e8e8e8; /* Lighter text for readability */
+    font-size: 0.9em; /* Smaller font size for compact display */
+    overflow-x: auto;
+    margin: 15px 0;
+    border: 1px solid #444; /* Subtle border for contrast */
+}
+
+/* Code Text Styling */
+.custom-api-section pre code {
+    color: #80cbc4; /* Greenish text for code */
+}
+
+
+/* Add this CSS to style the navbar */
+.navbar_component {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Make sure the "Server Status" is aligned to the right */
+.navbar_text {
+    margin-left: auto;
+    padding-right: 20px;
+    display: flex;
+    align-items: center; /* Aligns the blinking light and text */
+}
+
+/* Styling for the "Server Status" text */
+.server-status-text {
+    color: white;  /* White color text */
+    font-size: 16px; /* Adjust the font size if needed */
+    font-weight: bold; /* Make the text bold */
+    margin-left: 5px; /* Adds space between the light and text */
+}
+
+/* red blinking light before the text */
+.green-blink {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(15, 249, 7);
+    border-radius: 50%;
+    margin-right: 10px; /* Space between light and text */
+    animation: blink 1s infinite; /* Blinking effect */
+}
+
+/* Animation for blinking effect */
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Floating transaction count */
+.floating-transaction-count {
+            position: fixed; /* Fix the position on the screen */
+            bottom: 20px; /* Distance from the bottom of the screen */
+            left: 20px; /* Distance from the left of the screen */
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for better visibility */
+            z-index: 1000; /* Make sure it floats on top of other elements */
+        }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .custom-api-section {
+        max-width: 95%; /* Increase width on smaller screens */
+        padding: 10px; /* Reduce padding for tighter spaces */
+    }
+
+    .custom-api-section h3 {
+        font-size: 1.4em; /* Smaller heading size for mobile */
+    }
+
+    .custom-api-section pre {
+        font-size: 0.8em; /* Smaller font size for mobile */
+    }
+}
+
+
+
+/* Custom Section Styling */
+.custom-signing-section {
+    background-color: #1e1e1e; /* Dark background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    margin: 20px auto;
+    width: 80%; /* Responsive width */
+    max-width: 900px; /* Maximum width */
+}
+
+/* Heading Styling */
+.custom-signing-section h3 {
+    color: #ffb86c; /* Orange-like color */
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Input Fields Styling */
+.custom-signing-section .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.custom-signing-section .input-container label {
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.custom-signing-section input[type="file"],
+.custom-signing-section input[type="password"],
+.custom-signing-section input[type="file"].pdf-input {
+    padding: 12px;
+    background-color: #333;
+    border: 2px solid #555;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1em;
+    outline: none;
+}
+
+.custom-signing-section input[type="file"]:hover,
+.custom-signing-section input[type="password"]:hover {
+    border-color: #ffb86c;
+}
+
+.custom-signing-section .btn-sign {
+    padding: 15px 30px;
+    background-color: #4caf50; /* Green color */
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.custom-signing-section .btn-sign:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .custom-signing-section {
+        width: 95%; /* Increase width on smaller screens */
+        padding: 20px;
+    }
+
+    .custom-signing-section h3 {
+        font-size: 1.6em; /* Smaller heading on mobile */
+    }
+
+    .custom-signing-section .input-container label {
+        font-size: 1em; /* Smaller font for labels */
+    }
+}
+
+/* Button Styling */
+#downloadBtn {
+        display: none; /* Initially hidden */
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #downloadBtn:hover {
+        background: linear-gradient(135deg, #45a049, #4CAF50);
+        transform: scale(1.05);
+    }
+
+    #downloadBtn:active {
+        transform: scale(1);
+    }
+
+    #downloadBtn:focus {
+        outline: none;
+    }
+
+    /* Button text styling */
+    #downloadBtn:before {
+        content: "📥 "; /* Adding an icon before the text */
+    }
+
+    /* Hover state for the Sign PDF button */
+    .btn-sign {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-sign:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+
+    .btn-sign:focus {
+        outline: none;
+    }
+</style>
+
+<body>
+    
+    <div class="page-wrapper">
+        <div class="global-styles w-embed">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/webtenn/appenai@v41/icons.min.css">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/webtenn/appenai@v41/styles.min.css">
+        </div>
+        
+        <div data-animation="default" class="navbar_component w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="53c6a356-b171-15cb-323f-affb7df9f04d" role="banner" data-duration="400">
+            <div class="navbar_container">
+                <a href="/" aria-current="page" class="navbar_logo-link w-nav-brand w--current" aria-label="home">
+                    <img src="https://managexindia.com/static/logo.png" loading="lazy" width="310" height="Auto" alt="" class="navbar_logo">
+                </a> 
+            </div>
+            <!-- Buttons for Login and Signup -->
+            <!-- Adding a green blinking light before "Server Status" -->
+            <div class="navbar_text">
+                <span class="green-blink"></span>
+                <span class="server-status-text">Server Online</span>
+            </div>
+            
+            <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div>
+        </div>
+        <!-- Floating transaction count -->
+        <div class="floating-transaction-count" id="transactionCount">Live Transactions: 0</div>
+        
+        <main class="main-wrapper">
+            <header class="section_hero-cta surface-subtle">
+                <div class="padding-global">
+                    <div class="container-medium">
+                        <div class="padding-section-large">
+                            <div class="text-align-center">
+                                <div class="max-width-xlarge align-center">
+                                    <div class="margin-bottom margin-small">
+                                        <h1 class="heading-style-h1">Simplify Secure Digital Signing</h1>
+                                    </div>
+                                    <p class="text-size-medium">
+                                        MXServerSign by ManageX (India) offers a powerful cloud-based solution for digitally signing PDFs using .pfx files. 
+                                        With unmatched security, compliance, and ease of use, our platform ensures fast and reliable document signing 
+                                        for businesses of all sizes.
+                                    </p>
+                                    <div class="margin-top margin-medium">
+                                        <!-- Add buttons or links to features, demos, or sign-up here if needed -->
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <section class="section_image-stats">
+                <div class="padding-global">
+                    <div class="container-large">
+                        <div class="padding-section-large">
+                            <div class="w-layout-grid image-stats_component">
+                                <div class="image-stats_image-wrapper">
+                                    <img src="https://www.dottedsign.com/blog/wp-content/uploads/2020/04/img_mobility.gif" 
+                                         loading="lazy" 
+                                         sizes="(max-width: 479px) 95vw, (max-width: 767px) 90vw, (max-width: 991px) 43vw, 41vw" 
+                                         srcset="https://www.dottedsign.com/blog/wp-content/uploads/2020/04/img_mobility.gif 1080w"
+                                    alt="" class="image-stats_image"></div>
+                                    <div id="w-node-_83c3d0c1-e384-d81c-56b9-42c321aece58-42db82da" class="image-stats_content">
+                                        <div class="margin-bottom margin-small">
+                                            <h2 class="heading-style-h3">MXServerSign ensures seamless and secure document signing.</h2>
+                                        </div>
+                                        <div class="margin-bottom margin-medium">
+                                            <p class="text-size-medium">
+                                                By 2026, secure and efficient digital documentation will become a cornerstone of business operations. 
+                                                MXServerSign is designed to help businesses confidently adopt digital workflows, ensuring compliance 
+                                                and trust with every signed document.
+                                                <br>
+                                                <br>Our cloud-based platform leverages robust encryption and user-friendly interfaces to deliver a seamless 
+                                                signing experience, empowering organizations to streamline processes while meeting stringent security standards. 
+                                            </p>
+                                        </div>
+                                        <div class="margin-top margin-small">
+                                            <!-- Add buttons, links, or additional content here -->
+                                        </div>
+                                </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="section_logo-marquee surface-strong">
+                <div class="padding-section-large">
+                    <div class="text-align-center">
+                        <div class="margin-bottom margin-large">
+                            <div class="heading-style-h5 text-color-inverse">Empowering Secure Digital Signing for Modern Businesses</div>
+                        </div>
+                    </div>
+                    <div fc-marquee-direction="horizontal" fc-marquee="component" fc-marquee-duration="80" class="logo-marquee_component">
+
+                        <div>
+                            <div fc-marquee="wrapper" class="logo-marquee_list-wrapper" style="animation-duration: 80s;">
+                                <div class="logo-marquee_list">
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658453b2a0c1297620191c00_Amazon-HP-White-Logo.png.webp" loading="eager" alt="Amazon" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584542a3ec27e4486ea26ba_Microsoft-HP-White-Logo.png.webp" loading="eager" alt="Microsoft" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658454bec10900ecd487dbf6_Nvidia-HP-White-Logo.png.webp" loading="eager" alt="nvidia" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455dc33e66fa374ead0d4_Pinterest-HP-White-Logo.png.webp" loading="eager" alt="Pinterest" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584542e4c0522c3cabb5cf5_Salesforce-HP-White-Logo.png.webp" loading="eager" alt="Salesforce" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/65845423d3c4012d0068a29d_LinkedIn-HP-White-Logo-300x182-1.png.webp" loading="eager" alt="LinkedIn" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455913f11a22478edde96_Adobe-HP-White-Logo.png.webp" loading="eager" alt="Adobe" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455a1ef4d290888ae1667_Bloomberg-HP-White-Logo.png.webp" loading="eager" alt="Bloomberg" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658454111fec2cb6019688d1_Airbus-HP-White-Logo.png.webp" loading="eager" alt="Airbus" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/65845416d59e85b0c3a4b449_Boeing-HP-White-Logo.png.webp" loading="eager" alt="Boeing" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455b895dac2c77e8a44a1_Homedepot-HP-White-Logo.png.webp" loading="eager" alt="The Home Depot" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584559ad849ed562be8c0d6_Bestbuy-HP-White-Logo.png.webp" loading="eager" alt="Best Buy" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455ab0348e6f4ef901914_Cerence-HP-White-Logo.png.webp" loading="eager" alt="cerence" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455eb70ac230a82f312eb_Siemen-HP-White-Logo.png.webp" loading="eager" alt="Siemens" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658454afd5c79bbc14463fe5_Dolby-HP-White-Logo.png.webp" loading="eager" alt="Dolby" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455cd1fec2cb60197c97c_Nextdoor-HP-White-Logo.png.webp" loading="eager" alt="nextdoor" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455c2a0c12976201a8607_JohnHopkins-HP-White-Logo.png.webp" loading="eager" alt="Johns Hopkins University" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455c99fe7f79bf9098299_LSE-HP-White-Logo.png.webp" loading="eager" alt="LSE" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455f2b6427218726d1f01_WashingtonUniversity-HP-White-Logo.png.webp" loading="eager" alt="University of Washington" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455bebae1d2daa3bec5f9_Inceptio-HP-White-Logo.png.webp" loading="eager" alt="Inceptio" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584543be2706b2ac464c410_Oracle-HP-White-Logo.png.webp" loading="eager" alt="Oracle" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455b23f11a22478edf48b_Gojek-HP-White-Logo-300x182-1.png.webp" loading="eager" alt="gojek" class="logo-marquee_image"></div>
+                                </div>
+                            </div>
+                            <div fc-marquee="wrapper" class="logo-marquee_list-wrapper" style="animation-duration: 80s;">
+                                <div class="logo-marquee_list">
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658453b2a0c1297620191c00_Amazon-HP-White-Logo.png.webp" loading="eager" alt="Amazon" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584542a3ec27e4486ea26ba_Microsoft-HP-White-Logo.png.webp" loading="eager" alt="Microsoft" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658454bec10900ecd487dbf6_Nvidia-HP-White-Logo.png.webp" loading="eager" alt="nvidia" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455dc33e66fa374ead0d4_Pinterest-HP-White-Logo.png.webp" loading="eager" alt="Pinterest" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584542e4c0522c3cabb5cf5_Salesforce-HP-White-Logo.png.webp" loading="eager" alt="Salesforce" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/65845423d3c4012d0068a29d_LinkedIn-HP-White-Logo-300x182-1.png.webp" loading="eager" alt="LinkedIn" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455913f11a22478edde96_Adobe-HP-White-Logo.png.webp" loading="eager" alt="Adobe" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455a1ef4d290888ae1667_Bloomberg-HP-White-Logo.png.webp" loading="eager" alt="Bloomberg" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658454111fec2cb6019688d1_Airbus-HP-White-Logo.png.webp" loading="eager" alt="Airbus" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/65845416d59e85b0c3a4b449_Boeing-HP-White-Logo.png.webp" loading="eager" alt="Boeing" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455b895dac2c77e8a44a1_Homedepot-HP-White-Logo.png.webp" loading="eager" alt="The Home Depot" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584559ad849ed562be8c0d6_Bestbuy-HP-White-Logo.png.webp" loading="eager" alt="Best Buy" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455ab0348e6f4ef901914_Cerence-HP-White-Logo.png.webp" loading="eager" alt="cerence" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455eb70ac230a82f312eb_Siemen-HP-White-Logo.png.webp" loading="eager" alt="Siemens" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658454afd5c79bbc14463fe5_Dolby-HP-White-Logo.png.webp" loading="eager" alt="Dolby" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455cd1fec2cb60197c97c_Nextdoor-HP-White-Logo.png.webp" loading="eager" alt="nextdoor" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455c2a0c12976201a8607_JohnHopkins-HP-White-Logo.png.webp" loading="eager" alt="Johns Hopkins University" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455c99fe7f79bf9098299_LSE-HP-White-Logo.png.webp" loading="eager" alt="LSE" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455f2b6427218726d1f01_WashingtonUniversity-HP-White-Logo.png.webp" loading="eager" alt="University of Washington" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455bebae1d2daa3bec5f9_Inceptio-HP-White-Logo.png.webp" loading="eager" alt="Inceptio" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6584543be2706b2ac464c410_Oracle-HP-White-Logo.png.webp" loading="eager" alt="Oracle" class="logo-marquee_image"></div>
+                                    <div class="logo-marquee_item"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/658455b23f11a22478edf48b_Gojek-HP-White-Logo-300x182-1.png.webp" loading="eager" alt="gojek" class="logo-marquee_image"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="section_large-image">
+                <div class="padding-global">
+                    <div class="container-large">
+                        <div class="padding-section-medium">
+                            <div class="large-image_component">
+                                <div class="margin-bottom margin-large">
+                                    <div class="text-align-center">
+                                        <div class="max-width-large align-center">
+                                            <div class="margin-bottom margin-small">
+                                                <h2>MXServerSign Streamlines Digital Document Signing</h2>
+                                            </div>
+                                            <p class="text-size-medium">
+                                                MXServerSign provides businesses with a cloud-based platform to securely sign and manage PDF documents using .pfx files, 
+                                                ensuring compliance, efficiency, and trust through a seamless and traceable process.
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="custom-signing-section">
+                                    <h3>Sample Demo Digitally Sign Your PDF</h3>
+                                    <form id="signingForm" method="POST">
+                                        <div class="input-container">
+                                            <!-- Upload .pfx file -->
+                                            <label for="pfxFile">Upload Your .pfx File</label>
+                                            <input type="file" id="pfxFile" name="pfxFile" accept=".pfx" required>
+                                
+                                            <!-- Enter PIN -->
+                                            <label for="pin">Enter Your PIN</label>
+                                            <input type="password" id="pin" name="pin" placeholder="Enter PIN" required>
+                                
+                                            <!-- Select PDF for Signing -->
+                                            <label for="pdfFile">Select PDF File to Sign</label>
+                                            <input type="file" id="pdfFile" name="pdfFile" accept=".pdf" class="pdf-input" required>
+                                
+                                            <!-- Sign PDF Button -->
+                                            <button type="submit" class="btn-sign">Digitally Sign PDF</button>
+                                
+                                            <button id="downloadBtn" style="display: none;">View Signed PDF</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <section>                              
+                                    <div class="custom-api-section">
+                                        <h3>API: Upload PFX File</h3>
+                                        <p style="color: white;">To upload your PFX file, use the following API:</p>
+                                        <pre><code class="language-http">POST http://127.0.0.1/upload
+                                                                    
+                                    Body: form-data
+                                    Key: file
+                                    Type: file
+                                    Value: Select the PFX file you wish to upload
+                                    
+                                    Key: pin
+                                    Type: text
+                                    Value: Enter the PIN associated with the PFX file
+                                    </code></pre>
+                                    </div>
+                                    
+                                
+                                    <div class="custom-api-section">
+                                        <h3>API: Sign a PDF</h3>
+                                        <p style="color: white;">To sign a PDF, use the following API:</p>
+                                        <pre><code class="language-json">
+                                POST http://127.0.0.1/sign/api/v1.0/postjson
+                                Body: raw JSON
+                                
+                                
+                                {
+                                    "request": {
+                                        "command": "managexserversign",  // Mandatory
+                                        "timestamp": "",  // Mandatory: Send ISO timestamp
+                                        "transaction_id": "",  // Mandatory: Ensure no duplicates
+                                        "pfx": {
+                                            "SN": "" // Mandatory: Uploded Certificate Serial no.
+                                        },
+                                        "pdf": {
+                                            "coordinates": ""  // Coordinates for signing
+                                        },
+                                        "pdf_data": ""  // Base64 encoded PDF
+                                    }
+                                }
+                                </code></pre>
+                                    </div>
+                                    
+                                    <div class="custom-api-section">
+                                        <h3>Advanced API Features</h3>
+                                        <p style="color: white;">If you need advanced API features, such as:</p>
+                                        <ul style="color: white;">
+                                            <li>Webhook response</li>
+                                            <li>Search by text to find coordinates</li>
+                                            <li>Change page number</li>
+                                            <li>Add reason, custom text, location</li>
+                                            <li>Change date format in signature appearance</li>
+                                            <li>
+                                                <a href="https://www.apple.com/certificateauthority/" 
+                                                   style="color: #099fee; text-decoration: none; font-weight: bold;" 
+                                                   target="_blank" 
+                                                
+                                                   onmouseout="this.style.textDecoration='none'">
+                                                   Enable Apple Timestamp Authority (TSA) for embedding timestamp in PDF signing
+                                                </a>
+                                            </li>
+                                            <li>Certify your PDF after signing</li>
+                                            <li>Invisible signature</li>
+                                            <li>Send email to the user after signing</li>
+                                            <li>Change signer’s name in signature appearance</li>
+                                            <li>Sign PDF with PDF URL (instead of Base64)</li>
+                                        </ul>
+                                        <p style="color: white;">Please <a href="https://managexindia.com/contact-us" target="_blank" style="color: #099fee; text-decoration: none; font-weight: bold;" onmouseout="this.style.textDecoration='none'">contact us</a> to access these advanced features.</p>
+                                        <!-- Buttons for Document Signer -->
+                                        <div style="margin-top: 20px;">
+                                            <a href="https://secure.certificate.digital/web/dsc/referral/?bp=85WFMdXitGA=" 
+                                            target="_blank" 
+                                            style="display: inline-block; padding: 10px 20px; background-color: #099fee; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">
+                                            Get Document Signer
+                                            </a>
+
+                                            <a href="https://drive.google.com/file/d/11OoZt3gtx2kDsSthHcC6o8Uewu_XaDVv/view" 
+                                            target="_blank" 
+                                            style="display: inline-block; padding: 10px 20px; background-color: #28a745; color: white; text-decoration: none; font-weight: bold; border-radius: 5px; margin-left: 10px;">
+                                            Document Signer Manual Process
+                                            </a>
+                                        </div>
+                                    </div>
+                                
+                                    
+                                
+                                </section>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="section_flex-cards">
+                <div class="padding-global">
+                    <div class="container-large">
+                        <div class="padding-bottom padding-xhuge">
+                            <div class="max-width-large align-center">
+                                <div class="margin-bottom margin-xlarge">
+                                    <div class="text-align-center">
+                                        <h3 class="heading-style-h4">Why Choose MXServerSign?</h3>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="flex-card_component">
+                                <div class="flex-card">
+                                    <div class="icon-item-c">
+                                        <div class="margin-bottom margin-xxsmall"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6669a323a7a01bec659d935d_home-icon-expertise-b.png" loading="lazy" alt="Expertise" class="icon-1x1-large"></div>
+                                        <div class="margin-bottom margin-tiny">
+                                            <h3 class="heading-style-h5">Security</h3>
+                                        </div>
+                                        <p>Rest assured, your PFX files and signed PDFs are 100% secure on our servers. If you request, we will remove both your PFX file and the signed PDF after the signature is completed.</p>
+                                    </div>
+                                </div>
+                                <div class="flex-card">
+                                    <div class="icon-item-c">
+                                        <div class="margin-bottom margin-xxsmall"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/66685886a7196a77f4d3dbb5_home-icon-scale-primary.png" loading="lazy" alt="Data at Scale" class="icon-1x1-large"></div>
+                                        <div class="margin-bottom margin-tiny">
+                                            <h3 class="heading-style-h5">Compliance</h3>
+                                        </div>
+                                        <p>Our platform is designed to meet global digital signing standards, ensuring legal and regulatory compliance for your business.</p>
+                                    </div>
+                                </div>
+                                <div class="flex-card">
+                                    <div class="icon-item-c">
+                                        <div class="margin-bottom margin-xxsmall"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/6669a3b7754b10dbf6e6ab5f_home-icon-quality-data-b.png" loading="lazy" alt="High quality datasets" class="icon-1x1-large"></div>
+                                        <div class="margin-bottom margin-tiny">
+                                            <h3 class="heading-style-h5">Ease of Use</h3>
+                                        </div>
+                                        <p>With a user-friendly API's, MXServerSign makes it easy to digitally sign and manage your PDF documents efficiently.</p>
+                                    </div>
+                                </div>
+                                <div class="flex-card">
+                                    <div class="icon-item-c">
+                                        <div class="margin-bottom margin-xxsmall"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/666858a03bd48ab16d8ca113_home-icon-flexibility-primary.png" loading="lazy" alt="Flexible Platform" class="icon-1x1-large"></div>
+                                        <div class="margin-bottom margin-tiny">
+                                            <h3 class="heading-style-h5">Scalability</h3>
+                                        </div>
+                                        <p>Whether you're a small business or a large enterprise, MXServerSign scales effortlessly to meet your document signing needs.</p>
+                                    </div>
+                                </div>
+                                <div class="flex-card">
+                                    <div class="icon-item-c">
+                                        <div class="margin-bottom margin-xxsmall"><img src="https://cdn.prod.website-files.com/656a605609413dfd3feb9d34/666859d79ffda623d59523cc_home-icon-innovation-primary-4.png" loading="lazy" alt="AI Data Innovation" class="icon-1x1-large"></div>
+                                        <div class="margin-bottom margin-tiny">
+                                            <h3 class="heading-style-h5">Innovation</h3>
+                                        </div>
+                                        <p>At MXServerSign, we continuously enhance our platform with the latest technology, ensuring a seamless and innovative signing experience.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <section id="bottom-cta" cta-theme="" class="section_form-modal appen-grad">
+                <div class="padding-global">
+                    <div class="container-large">
+                        <div class="padding-section-large">
+                            <div class="form-modal_wrapper">
+                                <div class="text-align-center">
+                                    <div class="max-width-large align-center">
+                                        <div class="margin-bottom margin-small">
+                                            <h2>Secure Digital Signing at Scale</h2>
+                                        </div>
+                                        <p class="text-size-medium">
+                                            Discover how MXServerSign simplifies and secures the process of signing and managing your PDF documents.
+                                        </p>
+                                        
+                                        <div class="margin-top margin-medium">
+                                            <div class="button-group is-center"><a href="https://managexindia.com/contact-us" class="button is-primary w-button">Schedule a Demo</a>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+
+ <!-- Include the SalesIQ script -->
+<script src="/static/javascripts/chat.js"></script>
+<script>
+    setInterval(async function () {
+    try {
+        // Server status check karega
+        const response = await fetch('/');
+        if (!response.ok) throw new Error("Server not responding");
+    } catch (e) {
+        console.log("Server is down, reloading...");
+        location.reload(); // Agar server down hai to page reload karo
+    }
+}, 5000); // Har 5 second ke interval par status check kare
+
+</script> 
+<script>
+    function countSuccessfulTransactions(transactions) {
+        return transactions.filter(transaction => transaction.status === "success").length;
+    }
+
+    function updateTransactionCount() {
+        fetch('/transaction_log.json')  // Ensure the path to your JSON file is correct
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();  // Parse the JSON data
+            })
+            .then(data => {
+                const successfulTransactionCount = countSuccessfulTransactions(data);
+                document.getElementById('transactionCount').textContent = `Live Transactions: ${successfulTransactionCount}`;
+            })
+            .catch(error => {
+                console.error('Error fetching transaction log:', error);
+            });
+    }
+
+    // Initial update
+    updateTransactionCount();
+
+    // Check for updates every 1 seconds
+    setInterval(updateTransactionCount, 1000);
+</script>
+<script>
+    document.getElementById('signingForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+    
+        const pin = document.getElementById('pin').value;
+        const pfxFile = document.getElementById('pfxFile').files[0];
+        const pdfFile = document.getElementById('pdfFile').files[0];
+    
+        if (!pin || !pfxFile || !pdfFile) {
+            alert('❌ Please fill in all required fields.');
+            return;
+        }
+    
+        // Step 1: Upload PFX File & Validate PIN
+        const formData = new FormData();
+        formData.append('file', pfxFile);
+        formData.append('pin', pin);
+    
+        fetch('http://127.0.0.1:5020/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(uploadData => {
+            if (!uploadData.SN) {
+                throw new Error(uploadData.message || 'PFX upload failed. Please check your file and PIN.');
+            }
+    
+            console.log('✅ PFX Upload Success:', uploadData);
+
+    
+            const SN = uploadData.SN; // Store PFX Serial Number from response
+    
+            // Step 2: Convert PDF to Base64
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                const pdfData = reader.result.split(',')[1];
+    
+                const transactionId = new Date().getTime();
+                const timestamp = new Date().toISOString();
+    
+                const requestBody = {
+                    "request": {
+                        "command": "managexserversign",
+                        "timestamp": timestamp,
+                        "transaction_id": transactionId,
+                        "pfx": { "SN": SN }, 
+                        "pdf": {
+                            "coordinates": "87, 239, 511, 460",
+                            "custom_text": "Signed with managexserversign",
+                            "lockpdf": "yes"  
+                        },
+                        "pdf_data": pdfData
+                    }
+                };
+    
+                // Step 3: Send Signing Request
+                fetch('http://127.0.0.1:5020/sign/api/v1.0/postjson', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                })
+                .then(response => response.json())
+                .then(signData => {
+                    if (!signData.response || !signData.response.signed_pdf_url) {
+                        throw new Error(signData.error || 'Signing failed. Please try again.');
+                    }
+    
+                    console.log('✅ Signed PDF:', signData.response.signed_pdf_url);
+                    alert('✔ PDF signed successfully!');
+    
+                    // Enable the download button
+                    const downloadBtn = document.getElementById('downloadBtn');
+                    downloadBtn.style.display = 'inline-block';
+                    downloadBtn.onclick = function() {
+                        const link = document.createElement('a');
+                        link.href = signData.response.signed_pdf_url;
+                        link.download = 'signed_document.pdf';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    };
+                })
+                .catch(error => {
+                    console.error('❌ Signing Error:', error);
+                    alert(`❌ Signing Error: ${error.message}`);
+                });
+            };
+    
+            reader.readAsDataURL(pdfFile);
+        })
+        .catch(error => {
+            console.error('❌ PFX Upload Error:', error);
+            alert(`❌ PFX Upload Error: ${error.message}`);
+        });
+    });
+    </script>
+<script>
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+
+    // Disable F12 and Ctrl+Shift+I (developer tools)
+    document.onkeydown = function(e) {
+        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
+            e.preventDefault();
+            return false;
+        }
+    };
+</script>
+
+</body>
+
+</html>
