@@ -46,14 +46,14 @@ Run the following command to create and activate a virtual environment:
 
 #### **For Windows:**  
 ```sh
-python -m venv env
-env\Scripts\activate
+python -m venv signer
+signer\Scripts\activate
 ```
 
 #### **For macOS/Linux:**  
 ```sh
-python3 -m venv env
-source env/bin/activate
+python3 -m venv signer
+source signer/bin/activate
 ```
 
 ### **3️⃣ Install Dependencies**  
