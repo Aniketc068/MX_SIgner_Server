@@ -2,12 +2,10 @@ from transaction_tracker import log_transaction
 from io import BytesIO
 import base64
 import os
-from validation import extract_recipient_and_cert_email
-from email_utils import add_email_to_queue
 from flask import request, jsonify
 
 def save_signed_pdf_and_send_response(
-    pdf_data, signed_pdf_data, txn_id, title, email, cn, webhook_url, request_data
+    pdf_data, signed_pdf_data, txn_id, title, cn, request_data
 ):
     try:
         # Save the signed PDF to a file
@@ -31,9 +29,6 @@ def save_signed_pdf_and_send_response(
         output_pdf.write(signed_pdf_data)  # Signed PDF data
         signed_pdf_base64 = base64.b64encode(output_pdf.getvalue()).decode()
 
-        # Extract recipient name and certemail
-        recipient_data = extract_recipient_and_cert_email(request_data, cn)
-        recipient_name = recipient_data['recipient_name']
 
         response = {
             "response": {
@@ -52,19 +47,12 @@ def save_signed_pdf_and_send_response(
             },
         }
 
-        if email:
-            subject = f"Signed PDF Document {title}_{txn_id}_signed.pdf"
-            add_email_to_queue(subject, email, recipient_name, signed_pdf_path)
-            # Log email status as pending (to be updated later)
-            log_transaction(txn_id, status="success", reason=f"Email Send to {email}", webhook_url=webhook_url)
-            response["response"]["file"]["attribute"]["Email Status"] = "success"
-
         # Log the transaction status as success
-        log_transaction(txn_id, status="success", reason="PDF signed successfully", webhook_url=webhook_url, response=response)
+        log_transaction(txn_id, status="success", reason="PDF signed successfully", response=response)
 
         # Return the response
         return jsonify(response)
     except Exception as e:
         # Log failure and return error
-        log_transaction(txn_id, status="failure", reason=str(e), webhook_url=webhook_url)
+        log_transaction(txn_id, status="failure", reason=str(e))
         return jsonify({'error': str(e)}), 500

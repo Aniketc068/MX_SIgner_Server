@@ -99,12 +99,11 @@ def handle_signing_request_v1():
         # Parse the request data
         request_data = request.get_json()
         txn_id = request_data.get('request', {}).get('transaction_id')
-        webhook_url = request_data.get('request', {}).get('parameter', {}).get('webhook_url', None)
         if not txn_id:
             return {"error": "Transaction ID is missing"}, 400
 
         # Call the signing function
-        response = sign_pdf_pfx(request_data, txn_id, webhook_url)
+        response = sign_pdf_pfx(request_data, txn_id)
 
         # Check if the response is valid
         if not response:

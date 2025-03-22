@@ -3,7 +3,7 @@ import json
 import re
 import threading
 import queue
-from webhook_utils import add_webhook_to_queue
+
 
 # Path to the transaction log file
 LOG_FILE = os.path.join(os.getcwd(), 'transaction_log.json')
@@ -56,7 +56,7 @@ def start_logging_thread():
     thread = threading.Thread(target=write_to_log_file, daemon=True)
     thread.start()
 
-def log_transaction(transaction_id, status, reason=None, webhook_url=None, response=None, **kwargs):
+def log_transaction(transaction_id, status, reason=None, response=None, **kwargs):
     """
     Log a transaction with its status and reason (if any), and optionally send it to a webhook.
 
@@ -64,7 +64,6 @@ def log_transaction(transaction_id, status, reason=None, webhook_url=None, respo
         transaction_id (str): The transaction ID.
         status (str): The status of the transaction ('success' or 'failure').
         reason (str, optional): The reason for failure, if applicable.
-        webhook_url (str, optional): The webhook URL to send the data.
     """
     try:
         # Prepare the log entry
@@ -76,19 +75,6 @@ def log_transaction(transaction_id, status, reason=None, webhook_url=None, respo
 
         # Add the log entry to the queue
         log_queue.put(log_entry)
-
-        # Send the transaction data to the webhook if URL is provided
-        if webhook_url:
-            payload = {
-                "txn": transaction_id,
-                "status": status,
-                "reason": reason
-            }
-
-            # Send the response (if any) to the webhook
-            if response:
-                payload["response"] = response
-            add_webhook_to_queue(webhook_url, payload)
 
     except Exception as e:
         print(f"Error logging transaction: {e}")

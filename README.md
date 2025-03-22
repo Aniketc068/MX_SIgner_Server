@@ -85,17 +85,15 @@ Once the server is running, visit:
 
 ## ⚙️ Configuration Settings  
 
-You can **customize various settings** using `env.py` and `managex_signer.config`.  
+You can **customize various settings** using `env.py`.  
 
-### **🔹 Modify SMTP Email Settings & Other Defaults (env.py)**  
+### **🔹 Modify Default Settings (env.py)**  
 Edit **`env.py`** to change the following:  
-- **SMTP Settings** – Update email server settings  
-- **TSA URL** – Change the Timestamp Authority (TSA) URL  
-- **Max PDF Size** – Set the maximum PDF size allowed in requests  
-- **Default Date Format** – Change the format of dates in signed PDFs  
-- **Default File Title** – Modify the title of signed PDF files  
-- **Default Signature Coordinates** – Adjust default placement for digital signatures  
-- **Temp Mail Blocking** – Modify `temp-mail.config` to block specific domains from receiving emails  
+- **Max PDF Size** – Set the maximum PDF size allowed in requests (**`MAX_PDF_SIZE_MB`**)  
+- **Default Date Format** – Change the format of dates in signed PDFs (**`Default_Date_Format`**)  
+- **Default File Title** – Modify the title of signed PDF files (**`Default_File_Title`**)  
+- **Default Signature Coordinates** – Adjust default placement for digital signatures (**`Default_Coordinates`**)  
+
 
 ### **🔹 Change Server IP & Port (managex_signer.config)**  
 Edit **`managex_signer.config`** to:  

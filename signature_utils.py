@@ -2,23 +2,12 @@
 
 from endesive import pdf
 
-def prepare_signature_dict(txn_id, sigflags, sigpage, sigbutton, location, signing_datetime, reason, invisible_sign, font_size, signature_details, signaturebox, sigandcertify):
+def prepare_signature_dict(txn_id, sigpage, signature_details, signaturebox, sigandcertify):
     """Prepare the signature dictionary for signing."""
     dct = {
-        "sigflags": sigflags,
         "sigfield": f"MX Signer Server {txn_id}",
         "sigpage": sigpage,
-        "sigbutton": sigbutton,
         "contact": "N/A",
-        "location": location if location else 'N/A',
-        "signingdate": signing_datetime.strftime('%Y%m%d%H%M%S+05\'30\'').encode(),
-        "reason": reason if reason else 'N/A',
-        "text": {
-                'wraptext': True,
-                'fontsize': font_size,
-                'textalign': 'left',
-                'linespacing': 1,
-            } if not invisible_sign == "yes" else None,  # Remove text block if invisible
         "signature": signature_details,
         "signaturebox": signaturebox,  # Include only for visible signatures
         "sigandcertify": sigandcertify,
