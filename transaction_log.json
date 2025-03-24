@@ -1,0 +1,82 @@
+[
+    {
+        "transaction_id": "88049490",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "16130235",
+        "status": "success",
+        "reason": "Email Send to chaturvedianiket007@gmail.com"
+    },
+    {
+        "transaction_id": "16130235",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "12195237",
+        "status": "success",
+        "reason": "Email Send to chaturvedianiket007@gmail.com"
+    },
+    {
+        "transaction_id": "12195237",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "40254029",
+        "status": "failure",
+        "reason": "Neither valid pdf_data  was provided"
+    },
+    {
+        "transaction_id": "11870850",
+        "status": "failure",
+        "reason": "Both pdf_data cannot be provided together"
+    },
+    {
+        "transaction_id": "79560404",
+        "status": "failure",
+        "reason": "Both pdf_data cannot be provided together"
+    },
+    {
+        "transaction_id": "21709633",
+        "status": "failure",
+        "reason": "Error fetching CRL: HTTPConnectionPool(host='www.certificate.digital', port=80): Max retries exceeded with url: /crl/CapricornSubCAforDocumentSignerDSC2022.crl (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001C33D80C530>, 'Connection to www.certificate.digital timed out. (connect timeout=None)'))"
+    },
+    {
+        "transaction_id": "21709633",
+        "status": "failure",
+        "reason": "Error fetching or parsing issuer certificate: HTTPConnectionPool(host='www.certificate.digital', port=80): Max retries exceeded with url: /repository/CapricornSubCAforDocumentSignerDSC2022.cer (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001C340ADEAE0>, 'Connection to www.certificate.digital timed out. (connect timeout=None)'))"
+    },
+    {
+        "transaction_id": "32926426",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "45021329",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "71145770",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "46984989",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "71913011",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    },
+    {
+        "transaction_id": "96136874",
+        "status": "success",
+        "reason": "PDF signed successfully"
+    }
+]
